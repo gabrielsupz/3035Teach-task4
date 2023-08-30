@@ -1,14 +1,23 @@
 import TaskContext from '../../context/TaskContext'
 import * as S from './style'
 import { useContext, useState } from 'react'
+import { TasksProps } from '../../App'
 
 export function ListForm() {
-  const { setTasks } = useContext(TaskContext)
+  const { tasks, setTasks } = useContext(TaskContext)
   const [inputValue, setInputValue] = useState('')
 
   const handleAddTask = () => {
-    setTasks(inputValue)
+    const newTask: TasksProps = {
+      task: inputValue,
+      finished: false
+    }
+
+    const updatedTasks = [...tasks, newTask]
+    setTasks(updatedTasks)
     setInputValue('')
+
+    console.log(updatedTasks)
   }
 
   return (

@@ -18,6 +18,61 @@ export function App() {
     setTasks(updatedTasks)
   }
 
+  const bringMyTasks = () => {
+    return (
+      <ul>
+        {tasks.map((e, index) => {
+          if (e.finished) {
+            return (
+              <li key={index}>
+                <p className="finished">
+                  {e.task} - <strong>FINALIZADA</strong>
+                </p>
+                <div className="buttonAndCheckbox">
+                  <div className="content">
+                    <label className="checkBox">
+                      <input
+                        id="ch1"
+                        className="checkBox"
+                        type="checkbox"
+                        checked={e.finished}
+                        onChange={() => handleTaskCheckbox(index)}
+                      />
+                      <div className="transition"></div>
+                    </label>
+                  </div>
+
+                  <RemoveButton index={index} />
+                </div>
+              </li>
+            )
+          }
+          return (
+            <li key={index}>
+              <p>{e.task}</p>
+              <div className="buttonAndCheckbox">
+                <div className="content">
+                  <label className="checkBox">
+                    <input
+                      id="ch1"
+                      className="checkBox"
+                      type="checkbox"
+                      checked={e.finished}
+                      onChange={() => handleTaskCheckbox(index)}
+                    />
+                    <div className="transition"></div>
+                  </label>
+                </div>
+
+                <RemoveButton index={index} />
+              </div>
+            </li>
+          )
+        })}
+      </ul>
+    )
+  }
+
   return (
     <>
       <header>
@@ -27,57 +82,11 @@ export function App() {
         {' '}
         <ListForm />
         <div className="tasksListed">
-          {' '}
-          <ul>
-            {tasks.map((e, index) => {
-              if (e.finished) {
-                return (
-                  <li key={index}>
-                    <p className="finished">
-                      {e.task} - <strong>FINALIZADA</strong>
-                    </p>
-                    <div>
-                      <div className="content">
-                        <label className="checkBox">
-                          <input
-                            id="ch1"
-                            className="checkBox"
-                            type="checkbox"
-                            checked={e.finished}
-                            onChange={() => handleTaskCheckbox(index)}
-                          />
-                          <div className="transition"></div>
-                        </label>
-                      </div>
-
-                      <RemoveButton index={index} />
-                    </div>
-                  </li>
-                )
-              }
-              return (
-                <li key={index}>
-                  <p>{e.task}</p>
-                  <div>
-                    <div className="content">
-                      <label className="checkBox">
-                        <input
-                          id="ch1"
-                          className="checkBox"
-                          type="checkbox"
-                          checked={e.finished}
-                          onChange={() => handleTaskCheckbox(index)}
-                        />
-                        <div className="transition"></div>
-                      </label>
-                    </div>
-
-                    <RemoveButton index={index} />
-                  </div>
-                </li>
-              )
-            })}
-          </ul>
+          {tasks.length === 0 ? (
+            <li className="noTasks">Sem tarefas</li>
+          ) : (
+            bringMyTasks()
+          )}
         </div>
       </taskContext.Provider>
     </>

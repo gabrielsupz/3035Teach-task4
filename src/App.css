@@ -1,14 +1,15 @@
 html {
   background-color: #494141;
   --input-text-color: #fff;
-  --button-color: #17052a;
-  --button-color-hover: #17052a;
+  --button-color: #678544;
+  --button-color-hover: #527825;
   --input-bg-color: #283542;
 
-  --text-color: #949faa;
+  --text-color: #e2e6ea;
   --active-color: #1b9bee;
 }
 #root {
+  padding-top: 10px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -58,11 +59,12 @@ header {
   min-height: 500px;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .tasksListed ul {
   font-size: 16px;
-  padding: 20px 15px 20px 15px;
+  padding: 10px 15px 0px 15px;
   list-style: none;
   display: flex;
   flex-direction: column;
@@ -76,6 +78,10 @@ header {
   display: flex;
   width: 100%;
   justify-content: space-between;
+}
+
+.tasksListed .noTasks {
+  width: auto;
 }
 .finished {
   color: rgb(0, 255, 60);
@@ -121,4 +127,10 @@ header {
 
 .transition {
   transition: 300ms ease;
+}
+
+.buttonAndCheckbox {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
